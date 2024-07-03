@@ -10,9 +10,12 @@ data class TaskDetails(
     val description: String
 )
 
-data class DataResponse(
-    val taskId: Int,
-    val taskDetail: TaskResponse
+data class TaskResponseList(
+    val task_response : List<TaskModel>
+)
+data class TaskModel(
+    val task_id: Int,
+    val taskDetail: List<TaskResponse>
 )
 
 data class TaskResponse(
@@ -20,5 +23,8 @@ data class TaskResponse(
     val date: String,
     val title: String,
     val description: String
+)
+data class UserIdRequest(
+    val user_id: Int
 )
 
