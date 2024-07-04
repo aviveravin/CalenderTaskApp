@@ -126,6 +126,12 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/deleteTask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete"/>
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>
 

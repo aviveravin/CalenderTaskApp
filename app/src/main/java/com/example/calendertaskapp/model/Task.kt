@@ -1,13 +1,20 @@
 package com.example.calendertaskapp.model
 
+import java.util.UUID
+
 data class TaskRequest(
     val user_id: Int,
-    val task: TaskDetails
+    val task: TaskData
 )
 
-data class TaskDetails(
+data class TaskData(
     val title: String,
-    val description: String
+    val description: String,
+    val date: String
+)
+
+data class StoreTaskResponse(
+    val status : String
 )
 
 data class TaskResponseList(
@@ -20,12 +27,16 @@ data class TaskModel(
 )
 
 data class TaskDetail(
-    val id: String?,
     val date: String?,
     val title: String?,
     val description: String?
 )
 data class UserIdRequest(
     val user_id: Int
+)
+
+data class DeleteTaskRequest(
+    val user_id: Int,
+    val task_id: Int
 )
 

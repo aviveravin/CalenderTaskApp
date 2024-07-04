@@ -6,14 +6,21 @@
     app:startDestination="@id/taskListFragment">
 
 
-<!--    <fragment-->
-<!--        android:id="@+id/monthViewFragment"-->
-<!--        android:name="com.example.calendertaskapp.fragment.MonthViewFragment"-->
-<!--        android:label="MonthViewFragment"-->
-<!--        tools:layout="@layout/fragment_month_view"/>-->
     <fragment
         android:id="@+id/taskListFragment"
         android:name="com.example.calendertaskapp.fragment.TaskListFragment"
         android:label="TaskListFragment"
-        tools:layout="@layout/fragment_task_list"/>
+        tools:layout="@layout/fragment_task_list">
+        <action
+            android:id="@+id/action_taskListFragment_to_monthViewFragment"
+            app:destination="@id/monthViewFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/monthViewFragment"
+        android:name="com.example.calendertaskapp.fragment.MonthViewFragment"
+        android:label="MonthViewFragment"
+        tools:layout="@layout/fragment_month_view"/>
+
+
 </navigation>

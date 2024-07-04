@@ -1,6 +1,8 @@
 package com.example.calendertaskapp.repository
 
 import android.util.Log
+import com.example.calendertaskapp.model.DeleteTaskRequest
+import com.example.calendertaskapp.model.StoreTaskResponse
 import com.example.calendertaskapp.model.TaskModel
 import com.example.calendertaskapp.model.TaskRequest
 import com.example.calendertaskapp.model.TaskResponseList
@@ -36,10 +38,10 @@ class TaskRepository @Inject constructor(
         }
     }
 
-    override suspend fun addTask(taskRequest: TaskRequest): ResponseResult<TaskRequest> {
+    override suspend fun addTask(taskRequest: TaskRequest): ResponseResult<StoreTaskResponse> {
         return try {
             val response = taskApiService.addTask(taskRequest)
-            Log.d("TAG", "getAllTasks: check the response $response")
+            Log.d("TAG", "addTasks: check the response $response")
             ResponseResult.success(response)
         } catch (e: HttpException) {
             ResponseResult.networkError("Constants.ERROR_MESSAGE")
@@ -54,11 +56,12 @@ class TaskRepository @Inject constructor(
         }
     }
 
-    override suspend fun deleteTask(id: Int): ResponseResult<Unit> {
+    override suspend fun deleteTask(userId: Int, taskId: Int): ResponseResult<StoreTaskResponse> {
+        val deleteTaskRequest = DeleteTaskRequest(userId, taskId)
         return try {
-            taskApiService.deleteTask(id)
-            Log.d("TAG", "deleteTask: task with id $id deleted successfully")
-            ResponseResult.success(Unit)
+            val response = taskApiService.deleteTask(deleteTaskRequest)
+            Log.d("TAG", "deleteTask: task with id deleted successfully")
+            ResponseResult.success(response)
         } catch (e: HttpException) {
             ResponseResult.networkError("Constants.ERROR_MESSAGE")
         } catch (connection: java.net.ConnectException) {

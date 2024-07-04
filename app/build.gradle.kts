@@ -67,4 +67,8 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
 
+    testImplementation ("junit:junit:4.13.2")
+    testImplementation ("org.mockito:mockito-core:3.12.4")
+    androidTestImplementation ("androidx.test.espresso:espresso-core:3.4.0")
+
 }
