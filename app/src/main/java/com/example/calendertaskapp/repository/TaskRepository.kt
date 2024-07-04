@@ -26,7 +26,7 @@ class TaskRepository @Inject constructor(
             Log.d("TAG", "getAllTasks: check the response $response")
             ResponseResult.success(response)
         } catch (e: HttpException) {
-            ResponseResult.networkError("Constants.ERROR_MESSAGE")
+            ResponseResult.networkError("Error")
         } catch (connection: java.net.ConnectException) {
             ResponseResult.networkError(connection.toString())
         } catch (e: Exception) {
@@ -34,7 +34,7 @@ class TaskRepository @Inject constructor(
                 "TaskRepository",
                 "getTasks: Exception e = $e"
             )
-            ResponseResult.exception("Constants.ERROR_MESSAGE")
+            ResponseResult.exception("Error")
         }
     }
 
@@ -44,7 +44,7 @@ class TaskRepository @Inject constructor(
             Log.d("TAG", "addTasks: check the response $response")
             ResponseResult.success(response)
         } catch (e: HttpException) {
-            ResponseResult.networkError("Constants.ERROR_MESSAGE")
+            ResponseResult.networkError("Error")
         } catch (connection: java.net.ConnectException) {
             ResponseResult.networkError(connection.toString())
         } catch (e: Exception) {
@@ -52,7 +52,7 @@ class TaskRepository @Inject constructor(
                 "TaskRepository",
                 "getTasks: Exception e = $e"
             )
-            ResponseResult.exception("Constants.ERROR_MESSAGE")
+            ResponseResult.exception("Error")
         }
     }
 
@@ -63,7 +63,7 @@ class TaskRepository @Inject constructor(
             Log.d("TAG", "deleteTask: task with id deleted successfully")
             ResponseResult.success(response)
         } catch (e: HttpException) {
-            ResponseResult.networkError("Constants.ERROR_MESSAGE")
+            ResponseResult.networkError("Error")
         } catch (connection: java.net.ConnectException) {
             ResponseResult.networkError(connection.toString())
         } catch (e: Exception) {
@@ -71,7 +71,7 @@ class TaskRepository @Inject constructor(
                 "TaskRepository",
                 "deleteTask: Exception e = $e"
             )
-            ResponseResult.exception("Constants.ERROR_MESSAGE")
+            ResponseResult.exception("Error")
         }
     }
 }

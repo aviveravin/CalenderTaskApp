@@ -73,7 +73,7 @@ class MonthViewFragment : Fragment() {
         setObservers()
     }
 
-    private fun showAddTaskDialog(day: String) {
+    private fun showAddTaskDialog(day: Date) {
         val builder = AlertDialog.Builder(requireContext())
         val dialogView = layoutInflater.inflate(R.layout.dialog_add_task, null)
         builder.setView(dialogView)
@@ -91,18 +91,22 @@ class MonthViewFragment : Fragment() {
             if (taskTitle.isEmpty() || taskDescription.isEmpty()) {
                 Toast.makeText(context, "Please enter both title and description", Toast.LENGTH_SHORT).show()
             } else {
-                dialog.dismiss()
-                taskViewModel.addTask(
-                    taskRequest = TaskRequest(
-                        123,
-                        task = TaskData(
-                            title = taskTitle,
-                            description = taskDescription,
-                            date = day.toString()
+                if (day.before(Calendar.getInstance().time)) {
+                    dialog.dismiss()
+                    Toast.makeText(context, "Cannot add tasks for past dates", Toast.LENGTH_SHORT).show()
+                } else {
+                    dialog.dismiss()
+                    taskViewModel.addTask(
+                        taskRequest = TaskRequest(
+                            123,
+                            task = TaskData(
+                                title = taskTitle,
+                                description = taskDescription,
+                                date = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(day)
+                            )
                         )
                     )
-                )
-
+                }
             }
         }
 
@@ -185,7 +189,7 @@ class MonthViewFragment : Fragment() {
         val adapter = MonthViewAdapter(days) { date ->
             date.let {
                 selectedDate = it
-                showAddTaskDialog(it.toString())
+                showAddTaskDialog(it)
             }
         }
 
