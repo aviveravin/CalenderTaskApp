@@ -62,9 +62,9 @@ class TaskListFragment : Fragment() {
         }
 
 
-//        taskViewModel.getTaskList(
-//            123
-//        )
+        taskViewModel.getTaskList(
+            123
+        )
 
         setObservers()
     }
@@ -81,7 +81,7 @@ class TaskListFragment : Fragment() {
 
                     is ViewState.Success -> {
                         Log.d("aviveravin", "bus list")
-                        val taskList = viewState.data.task_response.flatMap { it.taskDetail }
+                        val taskList = viewState.data.tasks.mapNotNull { it.task_detail }
                         taskListAdapter.updateData(taskList)
 //                        binding.progressBar.visibility = View.GONE
                     }

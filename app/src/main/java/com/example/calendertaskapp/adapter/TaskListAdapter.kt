@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.calendertaskapp.databinding.ItemTaskLayoutBinding
+import com.example.calendertaskapp.model.TaskDetail
 import com.example.calendertaskapp.model.TaskModel
-import com.example.calendertaskapp.model.TaskResponse
 
 class TaskListAdapter() : RecyclerView.Adapter<TaskListAdapter.ViewHolder>() {
 
-    private var taskDetails: List<TaskResponse> = emptyList()
+    private var taskDetails: List<TaskDetail> = emptyList()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateData(newData: List<TaskResponse>) {
+    fun updateData(newData: List<TaskDetail>) {
         taskDetails = newData
         notifyDataSetChanged()
     }
@@ -38,7 +38,7 @@ class TaskListAdapter() : RecyclerView.Adapter<TaskListAdapter.ViewHolder>() {
     class ViewHolder(val binding: ItemTaskLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(task: TaskResponse) {
+        fun onBind(task: TaskDetail) {
             // Bind data to your views here
             with(binding) {
                 idDetail.text = task.id
